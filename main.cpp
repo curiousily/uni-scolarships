@@ -24,7 +24,7 @@ namespace utility
         {
             Write(line, outputStream);
             va_list argumentList;
-            va_start(argumentList, line);
+            va_start(argumentList, format);
             for (int i = 0; format[i] != '\0'; i++)
             {
                 if (format[i] == 'i')

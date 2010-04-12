@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stdio.h>
 #include <stdarg.h>
+#include <string.h>
 
 using namespace std;
 
@@ -19,7 +20,7 @@ namespace utility
             Write(line, cout);
         }
 
-        void WriteLine(const char * line, ostream & outputStream,const char * format = "", ...)
+        void WriteLine(const char * line, ostream & outputStream, const char * format = "", ...)
         {
             Write(line, outputStream);
             va_list argumentList;
@@ -113,6 +114,33 @@ namespace scolarships
             double averageGrade;
             double averageIncome;
         };
+
+        char * GetStudentAbbreviatedName(Student * student, int length)
+        {
+            char * result = new char[length];
+            char * temp = strtok(student->name , " ");
+            char * firstAndSurName = new char[5];
+
+            int spaceCount = 0;
+            while(temp != NULL)
+            {
+                if(spaceCount < 2)
+                {
+                    strncat(firstAndSurName, temp, 1);
+                    strcat(firstAndSurName, ".");
+                }
+                else
+                {
+                    firstAndSurName[4] = '\0';
+                    strcat(result, temp);
+                    strcat(result, " ");
+                    strcat(result, firstAndSurName);
+                }
+                temp = strtok(NULL, " ");
+                spaceCount++;
+            }
+            return result;
+        }
 
         namespace List
         {
@@ -269,28 +297,25 @@ using namespace utility::input;
 using namespace utility::output;
 
 
-int main()
+void InitializeStudentList()
 {
-    List::Create();
-
-    WriteLine("Welcome to the virtual scolarship list program!");
-    WriteEmptyLine();
     Write("Please enter the number of students that are competing for scolarships : ");
     int numberOfStudents = ReadNumber(10, 500);
 
+    ElementType * student;
     for (int i = 0; i < numberOfStudents; i++)
     {
         int number = i + 1;
         WriteLine("You are entering information for student #", cout, "i", number);
-        ElementType * student = new ElementType;
+        student = new ElementType;
 
-        Write("number : ");
-        student->number = ReadNumber(0, numberOfStudents);
-        WriteEmptyLine();
+        student->number = number;
 
         Write("name : ");
         student->name = ReadString(10, 50);
         WriteEmptyLine();
+
+        cout << GetStudentAbbreviatedName(student, 50) << endl;
 
         Write("average grade : ");
         student->averageGrade = ReadNumber(3.00, 6.00);
@@ -302,6 +327,33 @@ int main()
 
         List::Add(student);
     }
+
+}
+
+void DisplayStudentList()
+{
+
+}
+
+void DisplayStudentStanding()
+{
+
+}
+
+int main()
+{
+    List::Create();
+
+    WriteLine("Welcome to the virtual scolarship list program!");
+    WriteEmptyLine();
+
+    InitializeStudentList();
+    DisplayStudentList();
+    DisplayStudentStanding();
+
+    WriteLine("Bye bye!");
+
+    List::Destroy();
 
     return 0;
 }

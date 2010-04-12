@@ -1,6 +1,7 @@
 # depslib dependency file v1.0
-1271095439 source:/home/vini/Dev/c/workspace/uni-scolarships/main.cpp
+1271099351 source:/home/vini/Dev/c/workspace/uni-scolarships/main.cpp
 	<iostream>
 	<stdio.h>
 	<stdarg.h>
+	<string.h>
 

@@ -340,9 +340,19 @@ void DisplayStudentStanding()
 
 }
 
-int main()
+void InitializeApp()
 {
     List::Create();
+}
+
+void ExitApp()
+{
+    List::Destroy();
+}
+
+int main()
+{
+    InitializeApp();
 
     WriteLine("Welcome to the virtual scolarship list program!");
     WriteEmptyLine();
@@ -353,7 +363,7 @@ int main()
 
     WriteLine("Bye bye!");
 
-    List::Destroy();
+    ExitApp();
 
     return 0;
 }

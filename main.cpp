@@ -1,238 +1,10 @@
-#include <iostream>
-#include <stdio.h>
-#include <stdarg.h>
-#include <string.h>
-
-using namespace std;
+#include "output.h"
+#include "input.h"
+#include "Student.h"
+#include "list.h"
 
 double m = 5.00;
 double k = 500.00;
-
-namespace utility
-{
-    namespace output
-    {
-
-        void Write(const char * line, ostream & outputStream)
-        {
-            outputStream << line;
-        }
-
-        void Write(const char * line)
-        {
-            Write(line, cout);
-        }
-
-        void WriteLine(const char * line, ostream & outputStream, const char * format = "", ...)
-        {
-            Write(line, outputStream);
-            va_list argumentList;
-            va_start(argumentList, format);
-            for (int i = 0; format[i] != '\0'; i++)
-            {
-                if (format[i] == 'i')
-                {
-                    cout << va_arg(argumentList, int);
-                }
-                else if (format[i] == 's')
-                {
-                    cout << va_arg(argumentList, char *);
-                }
-            }
-            va_end(argumentList);
-            outputStream << endl;
-        }
-
-        void WriteLine(const char * line)
-        {
-            WriteLine(line, cout);
-        }
-
-        void WriteEmptyLine(ostream & outputStream)
-        {
-            WriteLine("", outputStream);
-        }
-
-        void WriteEmptyLine()
-        {
-            WriteLine("");
-        }
-    }
-
-    namespace input
-    {
-
-        template <class NumberType>
-        NumberType ReadNumber(const NumberType & minValue, const NumberType & maxValue, istream & inputStream)
-        {
-            NumberType result;
-            while (true)
-            {
-                inputStream >> result;
-                if (inputStream && result >= minValue && result <= maxValue)
-                {
-                    return result;
-                }
-            }
-        }
-
-        template <class NumberType>
-        NumberType ReadNumber(const NumberType & minValue, const NumberType & maxValue)
-        {
-            return ReadNumber(minValue, maxValue, cin);
-        }
-
-        char * ReadString(const int & minLength, const int & maxLength, istream & inputStream)
-        {
-            char * result = new char[maxLength];
-            while (true)
-            {
-                inputStream.getline(result, maxLength + 300);
-                int resultLength = inputStream.gcount() - 1;
-                if (inputStream && resultLength >= minLength && resultLength <= maxLength)
-                {
-                    return result;
-                }
-            }
-        }
-
-        char * ReadString(const int & minLength, const int & maxLength)
-        {
-            return ReadString(minLength, maxLength, cin);
-        }
-
-    }
-}
-
-namespace scolarships
-{
-
-    namespace students
-    {
-
-        struct Student
-        {
-            int number;
-            char * name;
-            double averageGrade;
-            double averageIncome;
-        };
-
-        char * GetAbbreviatedStudentName(Student * student, int length)
-        {
-            char * result = new char[length];
-            char * temp = strtok(student->name , " ");
-            char * firstAndSurName = new char[5];
-
-            int spaceCount = 0;
-            while(temp != NULL)
-            {
-                if(spaceCount < 2)
-                {
-                    strncat(firstAndSurName, temp, 1);
-                    strcat(firstAndSurName, ".");
-                }
-                else
-                {
-                    firstAndSurName[4] = '\0';
-                    strcat(result, temp);
-                    strcat(result, " ");
-                    strcat(result, firstAndSurName);
-                }
-                temp = strtok(NULL, " ");
-                spaceCount++;
-            }
-            return result;
-        }
-
-        int GetStudentScolarship(Student * student)
-        {
-            if(student->averageGrade >= 5.50)
-            {
-                return 100;
-            }
-            else if(student->averageGrade >= m && student->averageIncome < k)
-            {
-                return 60;
-            }
-            else
-            {
-                return 0;
-            }
-        }
-
-        namespace List
-        {
-
-            struct Node
-            {
-                Node * next;
-                Student * element;
-
-                Node()
-                {
-                    next = NULL;
-                    element = NULL;
-                }
-
-                ~Node()
-                {
-                    delete element;
-                }
-            };
-
-            Node * head;
-            Node * tail;
-
-            void Create()
-            {
-                head = NULL;
-                tail = NULL;
-            }
-
-            void Destroy()
-            {
-                Node * nodeToDelete = head;
-                while (nodeToDelete != NULL)
-                {
-                    Node * temp = nodeToDelete;
-                    nodeToDelete = nodeToDelete->next;
-                    delete temp;
-                }
-            }
-
-            void Add(Student * student)
-            {
-                Node * newNode = new Node;
-                newNode->element = student;
-                if (head == NULL)
-                {
-                    head = tail = newNode;
-                }
-                else
-                {
-                    tail->next = newNode;
-                    tail = tail->next;
-                }
-            }
-
-            void Sort( int (*CmpFunc)(Student, Student) )
-            {
-
-            }
-
-            void Map(void (*CallbackFunc) (Student*))
-            {
-                Node * node = head;
-                while (node != NULL)
-                {
-                    CallbackFunc(node->element);
-                    node = node->next;
-                }
-            }
-        }
-    }
-}
 
 
 using namespace scolarships::students;
@@ -277,7 +49,7 @@ void InitializeStudentList()
 void PrintStudent(Student * student)
 {
     cout << student->number << " "
-         << GetStudentAbbreviatedName(student, 50) << " "
+         << GetAbbreviatedStudentName(student, 50) << " "
          << student->averageGrade << " "
          << student->averageIncome << endl;
 }
@@ -324,7 +96,7 @@ int StudentComplexComparator(Student * student1, Student * student2)
 
 void PrintStudentScolarshipInfo(Student * student)
 {
-    cout << student->name << " " << GetStudentScolarship(student) << endl;
+    cout << student->name << " " << GetStudentScolarship(student, m, k) << endl;
 }
 
 void DisplayStudentList()

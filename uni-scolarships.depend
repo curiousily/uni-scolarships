@@ -1,7 +1,36 @@
 # depslib dependency file v1.0
-1271162101 source:/home/vini/Dev/c/workspace/uni-scolarships/main.cpp
+1271173524 source:/home/vini/Dev/c/workspace/uni-scolarships/main.cpp
 	<iostream>
 	<stdio.h>
-	<stdarg.h>
 	<string.h>
+	"output.h"
+	"input.h"
+	"Student.h"
+	"list.h"
+
+1271172121 source:/home/vini/Dev/c/workspace/uni-scolarships/output.cpp
+	"output.h"
+	<stdarg.h>
+
+1271171903 /home/vini/Dev/c/workspace/uni-scolarships/output.h
+	<iostream>
+
+1271172355 source:/home/vini/Dev/c/workspace/uni-scolarships/input.cpp
+	"input.h"
+
+1271172913 /home/vini/Dev/c/workspace/uni-scolarships/input.h
+	<iostream>
+
+1271173213 source:/home/vini/Dev/c/workspace/uni-scolarships/Student.cpp
+	<string.h>
+	"Student.h"
+
+1271173220 /home/vini/Dev/c/workspace/uni-scolarships/Student.h
+
+1271173546 source:/home/vini/Dev/c/workspace/uni-scolarships/list.cpp
+	<stdio.h>
+	"list.h"
+
+1271173688 /home/vini/Dev/c/workspace/uni-scolarships/list.h
+	"Student.h"
 

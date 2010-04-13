@@ -37,7 +37,7 @@ namespace scolarships
 
             void Sort( int (*CmpFunc)(Student *, Student *) );
 
-            void Map(void (*CallbackFunc) (Student*));
+            void Map( void (*CallbackFunc) (Student *) );
         }
     }
 }

@@ -15,9 +15,9 @@ namespace scolarships
             double averageIncome;
         };
 
-        char * GetAbbreviatedStudentName(Student * student, int length);
+        char * GetAbbreviatedStudentName(Student * student,const int & length);
 
-        int GetStudentScolarship(Student * student, int m, int k);
+        int GetStudentScolarship(Student * student, const int & lowestGrade, const int & highestIncome);
 
     }
 

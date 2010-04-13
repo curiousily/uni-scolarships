@@ -2,7 +2,7 @@
 
 #include "Student.h"
 
-char * scolarships::students::GetAbbreviatedStudentName(Student * student, int length)
+char * scolarships::students::GetAbbreviatedStudentName(Student * student, const int & length)
 {
     char * result = new char[length];
     char * temp = strtok(student->name , " ");
@@ -29,13 +29,13 @@ char * scolarships::students::GetAbbreviatedStudentName(Student * student, int l
     return result;
 }
 
-int scolarships::students::GetStudentScolarship(Student * student, int m, int k)
+int scolarships::students::GetStudentScolarship(Student * student, const int & lowestGrade, const int & highestIncome)
 {
     if (student->averageGrade >= 5.50)
     {
         return 100;
     }
-    else if (student->averageGrade >= m && student->averageIncome < k)
+    else if (student->averageGrade >= lowestGrade && student->averageIncome < highestIncome)
     {
         return 60;
     }

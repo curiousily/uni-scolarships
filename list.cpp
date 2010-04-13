@@ -41,7 +41,7 @@ void scolarships::students::List::Sort( int (*CmpFunc)(Student *, Student *) )
 
 }
 
-void scolarships::students::List::Map(void (*CallbackFunc) (Student*))
+void scolarships::students::List::Map( void (*CallbackFunc) (Student*) )
 {
     Node * node = head;
     while (node != NULL)

@@ -45,7 +45,6 @@ void InitializeStudentList()
         int number = i + 1;
         List::Add(ReadStudent(number));
     }
-
 }
 
 void PrintStudent(Student * student)

@@ -116,7 +116,6 @@ namespace scolarships
             char * name;
             double averageGrade;
             double averageIncome;
-            int scolarship;
         };
 
         char * GetStudentAbbreviatedName(Student * student, int length)
@@ -146,19 +145,19 @@ namespace scolarships
             return result;
         }
 
-        void SetStudentScolarship(Student * student)
+        int GetStudentScolarship(Student * student)
         {
             if(student->averageGrade >= 5.50)
             {
-                student->scolarship = 100;
+                return 100;
             }
             else if(student->averageGrade >= m && student->averageIncome < k)
             {
-                student->scolarship = 60;
+                return 60;
             }
             else
             {
-                student->scolarship = 0;
+                return 0;
             }
         }
 
@@ -261,22 +260,20 @@ using namespace utility::output;
 void InitializeStudentList()
 {
     Write("Please enter the number of students that are competing for scolarships : ");
-    int numberOfStudents = ReadNumber(10, 500);
+    int numberOfStudents = ReadNumber(3, 500);
 
     ElementType * student;
     for (int i = 0; i < numberOfStudents; i++)
     {
         int number = i + 1;
         WriteLine("You are entering information for student #", cout, "i", number);
-        student = new ElementType;
+        student = new Student;
 
         student->number = number;
 
         Write("three names delimited by space (between 10 and 50 characters) : ");
         student->name = ReadString(10, 50);
         WriteEmptyLine();
-
-        cout << GetStudentAbbreviatedName(student, 50) << endl;
 
         Write("average grade (between 3.00 and 6.00) : ");
         student->averageGrade = ReadNumber(3.00, 6.00);
@@ -285,8 +282,6 @@ void InitializeStudentList()
         Write("average family income (between 1.00 and 999.999) : ");
         student->averageIncome = ReadNumber(1.00, 999.99);
         WriteEmptyLine();
-
-        SetStudentScolarship(student);
 
         List::Add(student);
     }
@@ -298,12 +293,12 @@ void PrintStudent(Student * student)
     cout << student->number << " "
          << GetStudentAbbreviatedName(student, 50) << " "
          << student->averageGrade << " "
-         << student->averageIncome ;
+         << student->averageIncome << endl;
 }
 
 void PrintStudentScolarshipInfo(Student * student)
 {
-    cout << student->name << " " << student->scolarship << endl;
+    cout << student->name << " " << GetStudentScolarship(student) << endl;
 }
 
 void DisplayStudentList()

@@ -118,7 +118,7 @@ namespace scolarships
             double averageIncome;
         };
 
-        char * GetStudentAbbreviatedName(Student * student, int length)
+        char * GetAbbreviatedStudentName(Student * student, int length)
         {
             char * result = new char[length];
             char * temp = strtok(student->name , " ");
@@ -181,7 +181,7 @@ namespace scolarships
                 }
             };
 
-            int elementCount;
+            int studentCount;
             Node * head = NULL;
             Node * tail = NULL;
 
@@ -192,40 +192,40 @@ namespace scolarships
 
             void Destroy()
             {
-                Node * elementToDelete = head;
-                while (elementToDelete != NULL)
+                Node * nodeToDelete = head;
+                while (nodeToDelete != NULL)
                 {
-                    Node * temp = elementToDelete;
-                    elementToDelete = elementToDelete->next;
+                    Node * temp = nodeToDelete;
+                    nodeToDelete = nodeToDelete->next;
                     delete temp;
                 }
-                elementCount = 0;
+                studentCount = 0;
             }
 
-            void Add(Student * element)
+            void Add(Student * student)
             {
-                Node * newElement = new Node;
-                newElement->element = element;
+                Node * newNode = new Node;
+                newNode->element = student;
                 if (head == NULL)
                 {
-                    head = tail = newElement;
+                    head = tail = newNode;
                 }
                 else
                 {
-                    tail->next = newElement;
+                    tail->next = newNode;
                     tail = tail->next;
                 }
-                elementCount++;
+                studentCount++;
             }
 
             int Size()
             {
-                return elementCount;
+                return studentCount;
             }
 
             bool IsEmpty()
             {
-                return elementCount == 0;
+                return studentCount == 0;
             }
 
             void Sort( int (*CmpFunc)(Student, Student) )
@@ -258,7 +258,7 @@ using namespace utility::output;
 void InitializeStudentList()
 {
     Write("Please enter the number of students that are competing for scolarships : ");
-    int numberOfStudents = ReadNumber(3, 500);
+    int numberOfStudents = ReadNumber(10, 500);
 
     Student * student;
     for (int i = 0; i < numberOfStudents; i++)
@@ -294,6 +294,46 @@ void PrintStudent(Student * student)
          << student->averageIncome << endl;
 }
 
+int StudentNumberComparator(Student * student1, Student * student2)
+{
+    if(student1->number > student2->number)
+    {
+        return 1;
+    }
+    else if(student1->number < student2->number)
+    {
+        return -1;
+    }
+    return 0;
+}
+
+int StudentComplexComparator(Student * student1, Student * student2)
+{
+    if(student1->averageGrade > student2->averageGrade)
+    {
+        return -1;
+    }
+    else if(student1->averageGrade < student2->averageGrade)
+    {
+        return 1;
+    }
+    else
+    {
+        if(student1->averageIncome > student2->averageIncome)
+        {
+            return 1;
+        }
+        else if(student1->averageIncome > student2->averageIncome)
+        {
+            return -1;
+        }
+        else
+        {
+            return StudentNumberComparator(student1, student2);
+        }
+    }
+}
+
 void PrintStudentScolarshipInfo(Student * student)
 {
     cout << student->name << " " << GetStudentScolarship(student) << endl;
@@ -303,6 +343,7 @@ void DisplayStudentList()
 {
     WriteLine("Student list");
     WriteEmptyLine();
+    List::Sort(StudentNumberComparator);
     List::Map(PrintStudent);
 }
 
@@ -310,6 +351,7 @@ void DisplayStudentStanding()
 {
     WriteLine("Student standing");
     WriteEmptyLine();
+    List::Sort(StudentComplexComparator);
     List::Map(PrintStudentScolarshipInfo);
 }
 

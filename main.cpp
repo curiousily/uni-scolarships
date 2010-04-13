@@ -181,13 +181,13 @@ namespace scolarships
                 }
             };
 
-            int studentCount;
-            Node * head = NULL;
-            Node * tail = NULL;
+            Node * head;
+            Node * tail;
 
             void Create()
             {
-                elementCount = 0;
+                head = NULL;
+                tail = NULL;
             }
 
             void Destroy()
@@ -199,7 +199,6 @@ namespace scolarships
                     nodeToDelete = nodeToDelete->next;
                     delete temp;
                 }
-                studentCount = 0;
             }
 
             void Add(Student * student)
@@ -215,17 +214,6 @@ namespace scolarships
                     tail->next = newNode;
                     tail = tail->next;
                 }
-                studentCount++;
-            }
-
-            int Size()
-            {
-                return studentCount;
-            }
-
-            bool IsEmpty()
-            {
-                return studentCount == 0;
             }
 
             void Sort( int (*CmpFunc)(Student, Student) )

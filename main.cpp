@@ -164,12 +164,10 @@ namespace scolarships
         namespace List
         {
 
-            typedef scolarships::students::Student ElementType;
-
             struct Node
             {
                 Node * next;
-                ElementType * element;
+                Student * element;
 
                 Node()
                 {
@@ -204,7 +202,7 @@ namespace scolarships
                 elementCount = 0;
             }
 
-            void Add(ElementType * element)
+            void Add(Student * element)
             {
                 Node * newElement = new Node;
                 newElement->element = element;
@@ -230,12 +228,12 @@ namespace scolarships
                 return elementCount == 0;
             }
 
-            void Sort( int (*CmpFunc)(ElementType, ElementType) )
+            void Sort( int (*CmpFunc)(Student, Student) )
             {
 
             }
 
-            void Map(void (*CallbackFunc) (ElementType*))
+            void Map(void (*CallbackFunc) (Student*))
             {
                 Node * node = head;
                 while (node != NULL)
@@ -262,7 +260,7 @@ void InitializeStudentList()
     Write("Please enter the number of students that are competing for scolarships : ");
     int numberOfStudents = ReadNumber(3, 500);
 
-    ElementType * student;
+    Student * student;
     for (int i = 0; i < numberOfStudents; i++)
     {
         int number = i + 1;

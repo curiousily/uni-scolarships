@@ -5,6 +5,9 @@
 
 using namespace std;
 
+double m = 5.00;
+double k = 500.00;
+
 namespace utility
 {
     namespace output
@@ -113,6 +116,7 @@ namespace scolarships
             char * name;
             double averageGrade;
             double averageIncome;
+            int scolarship;
         };
 
         char * GetStudentAbbreviatedName(Student * student, int length)
@@ -140,6 +144,22 @@ namespace scolarships
                 spaceCount++;
             }
             return result;
+        }
+
+        void SetStudentScolarship(Student * student)
+        {
+            if(student->averageGrade >= 5.50)
+            {
+                student->scolarship = 100;
+            }
+            else if(student->averageGrade >= m && student->averageIncome < k)
+            {
+                student->scolarship = 60;
+            }
+            else
+            {
+                student->scolarship = 0;
+            }
         }
 
         namespace List
@@ -201,51 +221,6 @@ namespace scolarships
                 elementCount++;
             }
 
-            void Remove(int index)
-            {
-                if (index + 1 > elementCount)
-                {
-                    return;
-                }
-                if (index == 0)
-                {
-                    Node * temp = head;
-                    head = head->next;
-                    delete temp;
-                    elementCount--;
-                    return;
-                }
-                if (index + 1 == elementCount)
-                {
-                    Node * element = head;
-                    while (element->next != tail)
-                    {
-                        element = element->next;
-                    }
-                    tail = element;
-                    Node * temp = element->next;
-                    element->next = NULL;
-                    delete temp;
-                    elementCount--;
-                    return;
-                }
-                int position = 0;
-                Node * element = head;
-                while (element != NULL)
-                {
-                    if (index == position)
-                    {
-                        Node * temp = element->next;
-                        element->next = element->next->next;
-                        delete temp;
-                        elementCount--;
-                        return;
-                    }
-                    element = element->next;
-                    position++;
-                }
-            }
-
             int Size()
             {
                 return elementCount;
@@ -261,7 +236,7 @@ namespace scolarships
 
             }
 
-            void Map( void (*CallbackFunc) (ElementType*) )
+            void Map(void (*CallbackFunc) (ElementType*))
             {
                 Node * node = head;
                 while (node != NULL)
@@ -269,20 +244,6 @@ namespace scolarships
                     CallbackFunc(node->element);
                     node = node->next;
                 }
-            }
-
-            ElementType * Find( bool (*ConstraintFunc) (ElementType*) )
-            {
-                Node * node = head;
-                while (node != NULL)
-                {
-                    if (ConstraintFunc(node->element))
-                    {
-                        return node->element;
-                    }
-                    node = node->next;
-                }
-                return NULL;
             }
         }
     }
@@ -311,33 +272,52 @@ void InitializeStudentList()
 
         student->number = number;
 
-        Write("name : ");
+        Write("three names delimited by space (between 10 and 50 characters) : ");
         student->name = ReadString(10, 50);
         WriteEmptyLine();
 
         cout << GetStudentAbbreviatedName(student, 50) << endl;
 
-        Write("average grade : ");
+        Write("average grade (between 3.00 and 6.00) : ");
         student->averageGrade = ReadNumber(3.00, 6.00);
         WriteEmptyLine();
 
-        Write("average family income : ");
+        Write("average family income (between 1.00 and 999.999) : ");
         student->averageIncome = ReadNumber(1.00, 999.99);
         WriteEmptyLine();
+
+        SetStudentScolarship(student);
 
         List::Add(student);
     }
 
 }
 
+void PrintStudent(Student * student)
+{
+    cout << student->number << " "
+         << GetStudentAbbreviatedName(student, 50) << " "
+         << student->averageGrade << " "
+         << student->averageIncome ;
+}
+
+void PrintStudentScolarshipInfo(Student * student)
+{
+    cout << student->name << " " << student->scolarship << endl;
+}
+
 void DisplayStudentList()
 {
-
+    WriteLine("Student list");
+    WriteEmptyLine();
+    List::Map(PrintStudent);
 }
 
 void DisplayStudentStanding()
 {
-
+    WriteLine("Student standing");
+    WriteEmptyLine();
+    List::Map(PrintStudentScolarshipInfo);
 }
 
 void InitializeApp()

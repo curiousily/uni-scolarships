@@ -7,7 +7,9 @@ namespace scolarships
 
     void ExitApp();
 
-    void RunApplication();
+    void RunApp();
+
+    void TestApp();
 }
 
 #endif // APPLICATION_H_INCLUDED

@@ -12,28 +12,15 @@ namespace scolarships
         namespace List
         {
 
-            struct Node
-            {
-                Node * next;
-                Student * element;
-
-                Node()
-                {
-                    next = NULL;
-                    element = NULL;
-                }
-
-                ~Node()
-                {
-                    delete element;
-                }
-            };
-
-            void Create();
+            void Create(int maxSize);
 
             void Destroy();
 
             void Add(Student * student);
+
+            Student * Get(const int & index);
+
+            int Size();
 
             void Sort( int (*CmpFunc)(Student *, Student *) );
 

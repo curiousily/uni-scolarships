@@ -25,6 +25,7 @@ template <class NumberType>
 NumberType utility::input::ReadNumber(const NumberType & minValue, const NumberType & maxValue, istream & inputStream)
 {
     NumberType result;
+    int run = 0;
     while (true)
     {
         inputStream >> result;
@@ -32,6 +33,12 @@ NumberType utility::input::ReadNumber(const NumberType & minValue, const NumberT
         {
             return result;
         }
+        if (run > 0)
+        {
+            cout << "Invalid number supplied expected between " << minValue << " and " << maxValue << endl;
+            cout << "try again : ";
+        }
+        run++;
     }
 }
 
@@ -44,6 +51,7 @@ NumberType utility::input::ReadNumber(const NumberType & minValue, const NumberT
 char * utility::input::ReadString(const int & minLength, const int & maxLength, istream & inputStream)
 {
     char * result = new char[maxLength];
+    int run = 0;
     while (true)
     {
         inputStream.getline(result, maxLength + 300);
@@ -52,6 +60,12 @@ char * utility::input::ReadString(const int & minLength, const int & maxLength, 
         {
             return result;
         }
+        if (run > 0)
+        {
+            cout << "Invalid string supplied expected length between " << minLength << " and " << maxLength << endl;
+            cout << "try again : ";
+        }
+        run++;
     }
 }
 

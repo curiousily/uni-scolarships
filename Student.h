@@ -19,6 +19,8 @@ namespace scolarships
 
         int GetStudentScolarship(Student * student, const int & lowestGrade, const int & highestIncome);
 
+        Student * CreateStudent(int number, char name[], double averageGrade, double averageIncome);
+
     }
 
 }

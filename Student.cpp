@@ -5,7 +5,9 @@
 char * scolarships::students::GetAbbreviatedStudentName(Student * student, const int & length)
 {
     char * result = new char[length];
-    char * temp = strtok(student->name , " ");
+    char * temp = new char[length];
+    temp = strcpy(temp, student->name);
+    temp = strtok(temp , " ");
     char * firstAndSurName = new char[5];
 
     int spaceCount = 0;
@@ -43,4 +45,15 @@ int scolarships::students::GetStudentScolarship(Student * student, const int & l
     {
         return 0;
     }
+}
+
+scolarships::students::Student * scolarships::students::CreateStudent(int number, char name[], double averageGrade, double averageIncome)
+{
+    Student * student = new Student;
+    student->number = number;
+    student->name = new char[50];
+    strcpy(student->name, name);
+    student->averageGrade = averageGrade;
+    student->averageIncome = averageIncome;
+    return student;
 }

@@ -1,3 +1,5 @@
+#include <cstring>
+
 #include "application.h"
 
 #include "output.h"
@@ -39,7 +41,7 @@ void InitializeStudentList()
 {
     Write("Please enter the number of students that are competing for scolarships : ");
     int numberOfStudents = ReadNumber(10, 500);
-
+    List::Create(numberOfStudents);
     for (int i = 0; i < numberOfStudents; i++)
     {
         int number = i + 1;
@@ -55,6 +57,11 @@ void PrintStudent(Student * student)
     << student->averageIncome << endl;
 }
 
+void PrintStudentScolarshipInfo(Student * student)
+{
+    cout << student->name << " " << GetStudentScolarship(student, lowestGrade, highestIncome) << endl;
+}
+
 int StudentNumberComparator(Student * student1, Student * student2)
 {
     if (student1->number > student2->number)
@@ -66,11 +73,6 @@ int StudentNumberComparator(Student * student1, Student * student2)
         return -1;
     }
     return 0;
-}
-
-void PrintStudentScolarshipInfo(Student * student)
-{
-    cout << student->name << " " << GetStudentScolarship(student, lowestGrade, highestIncome) << endl;
 }
 
 int StudentComplexComparator(Student * student1, Student * student2)
@@ -128,7 +130,6 @@ void ReadScolarshipConstraints()
 
 void scolarships::InitializeApp()
 {
-    List::Create();
     WriteLine("Welcome to the virtual scolarship list program!");
     WriteEmptyLine();
 }
@@ -139,7 +140,7 @@ void scolarships::ExitApp()
     List::Destroy();
 }
 
-void scolarships::RunApplication()
+void scolarships::RunApp()
 {
     InitializeApp();
 
@@ -149,4 +150,25 @@ void scolarships::RunApplication()
     DisplayStudentStanding();
 
     ExitApp();
+}
+
+void scolarships::TestApp()
+{
+    List::Create(10);
+
+    List::Add(CreateStudent(1, "ivan slavov slakov", 5.00, 540.00));
+    List::Add(CreateStudent(4, "liliq kareva vekova", 6.00, 450.00));
+    List::Add(CreateStudent(3, "minko ivanov petrov", 4.00, 200.00));
+    List::Add(CreateStudent(5, "teodora filipova velikova", 3.60, 900.00));
+    List::Add(CreateStudent(2, "kiril demqnov kirkov", 5.50, 680.00));
+    List::Add(CreateStudent(6, "petur blagoev sirkov", 4.20, 200.00));
+
+    DisplayStudentList();
+
+    highestIncome = 600.00;
+    lowestGrade = 4.50;
+
+    WriteEmptyLine();
+
+    DisplayStudentStanding();
 }

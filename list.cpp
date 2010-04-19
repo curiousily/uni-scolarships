@@ -1,52 +1,62 @@
 #include <stdio.h>
 #include "list.h"
 
-scolarships::students::List::Node * head;
-scolarships::students::List::Node * tail;
+const int MAX_STUDENTS_ALLOWED = 500;
 
-void scolarships::students::List::Create()
+int studentCount = 0;
+int maxStudents = 9999;
+scolarships::students::Student * studentList[MAX_STUDENTS_ALLOWED];
+
+void scolarships::students::List::Create(int maxSize)
 {
-    head = NULL;
-    tail = NULL;
+    studentCount = 0;
+    maxStudents = maxSize;
 }
 
 void scolarships::students::List::Destroy()
 {
-    Node * nodeToDelete = head;
-    while (nodeToDelete != NULL)
-    {
-        Node * temp = nodeToDelete;
-        nodeToDelete = nodeToDelete->next;
-        delete temp;
-    }
+    studentCount = 0;
+    maxStudents = 9999;
+}
+
+int scolarships::students::List::Size()
+{
+    return studentCount;
 }
 
 void scolarships::students::List::Add(Student * student)
 {
-    Node * newNode = new Node;
-    newNode->element = student;
-    if (head == NULL)
+    if(studentCount > maxStudents)
     {
-        head = tail = newNode;
+        return;
     }
-    else
-    {
-        tail->next = newNode;
-        tail = tail->next;
-    }
+    studentList[studentCount++] = student;
+}
+
+scolarships::students::Student * scolarships::students::List::Get(const int & index)
+{
+    return studentList[index];
 }
 
 void scolarships::students::List::Sort( int (*CmpFunc)(Student *, Student *) )
 {
-
+    for(int i = 1; i < studentCount ; i++)
+    {
+        Student * student = studentList[i];
+        int j = i - 1;
+        while (j >= 0 && CmpFunc(studentList[j], student) > 0)
+        {
+            studentList[j + 1] = studentList[j];
+            j--;
+        }
+        studentList[j + 1] = student;
+    }
 }
 
 void scolarships::students::List::Map( void (*CallbackFunc) (Student*) )
 {
-    Node * node = head;
-    while (node != NULL)
+    for(int i = 0; i < Size(); i++)
     {
-        CallbackFunc(node->element);
-        node = node->next;
+        CallbackFunc(studentList[i]);
     }
 }

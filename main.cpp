@@ -2,6 +2,6 @@
 
 int main()
 {
-    scolarships::RunApplication();
+    scolarships::RunApp();
     return 0;
 }

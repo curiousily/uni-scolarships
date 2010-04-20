@@ -50,14 +50,17 @@ NumberType utility::input::ReadNumber(const NumberType & minValue, const NumberT
 
 char * utility::input::ReadString(const int & minLength, const int & maxLength, istream & inputStream)
 {
-    char * result = new char[maxLength];
+    char * result; //= new char[maxLength];
     int run = 0;
     while (true)
     {
-        inputStream.getline(result, maxLength + 300);
+        char buffer[200];
+        inputStream.getline(buffer, 200);
         int resultLength = inputStream.gcount() - 1;
         if (inputStream && resultLength >= minLength && resultLength <= maxLength)
         {
+            result = new char[resultLength + 1];
+            strcpy(result, buffer);
             return result;
         }
         if (run > 0)

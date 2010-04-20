@@ -2,16 +2,16 @@
 1271698216 source:/home/vini/Dev/c/workspace/uni-scolarships/main.cpp
 	"application.h"
 
-1271174413 source:/home/vini/Dev/c/workspace/uni-scolarships/output.cpp
+1271737674 source:/home/vini/Dev/c/workspace/uni-scolarships/output.cpp
 	"output.h"
 	<stdarg.h>
 
-1271174409 /home/vini/Dev/c/workspace/uni-scolarships/output.h
+1271737644 /home/vini/Dev/c/workspace/uni-scolarships/output.h
 	<iostream>
 
 1271172870 source:/home/vini/Dev/c/workspace/uni-scolarships/input.cpp
 
-1271698663 /home/vini/Dev/c/workspace/uni-scolarships/input.h
+1271778830 /home/vini/Dev/c/workspace/uni-scolarships/input.h
 	<iostream>
 
 1271694263 source:/home/vini/Dev/c/workspace/uni-scolarships/Student.cpp

@@ -36,7 +36,6 @@
 		<Unit filename="Student.h" />
 		<Unit filename="application.cpp" />
 		<Unit filename="application.h" />
-		<Unit filename="input.cpp" />
 		<Unit filename="input.h" />
 		<Unit filename="list.cpp" />
 		<Unit filename="list.h" />

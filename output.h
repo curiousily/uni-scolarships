@@ -3,21 +3,19 @@
 
 #include <iostream>
 
-using namespace std;
-
 namespace utility
 {
     namespace output
     {
-        void Write(const char * line, ostream & outputStream);
+        void Write(const char * line, std::ostream & outputStream);
 
         void Write(const char * line);
 
-        void WriteLine(const char * line, ostream & outputStream, const char * format = "", ...);
+        void WriteLine(const char * line, std::ostream & outputStream, const char * format = "", ...);
 
         void WriteLine(const char * line);
 
-        void WriteEmptyLine(ostream & outputStream);
+        void WriteEmptyLine(std::ostream & outputStream);
 
         void WriteEmptyLine();
     }

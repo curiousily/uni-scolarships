@@ -5,7 +5,7 @@
 		<Cursor position="264" topLine="36" />
 	</File>
 	<File name="Student.h" open="1" top="0" tabpos="6">
-		<Cursor position="185" topLine="0" />
+		<Cursor position="185" topLine="5" />
 	</File>
 	<File name="application.cpp" open="1" top="0" tabpos="3">
 		<Cursor position="331" topLine="6" />
@@ -13,7 +13,10 @@
 	<File name="application.h" open="1" top="0" tabpos="2">
 		<Cursor position="174" topLine="0" />
 	</File>
-	<File name="list.cpp" open="1" top="1" tabpos="5">
+	<File name="input.h" open="1" top="0" tabpos="8">
+		<Cursor position="324" topLine="0" />
+	</File>
+	<File name="list.cpp" open="1" top="0" tabpos="5">
 		<Cursor position="36" topLine="0" />
 	</File>
 	<File name="list.h" open="1" top="0" tabpos="4">
@@ -21,5 +24,11 @@
 	</File>
 	<File name="main.cpp" open="1" top="0" tabpos="1">
 		<Cursor position="59" topLine="0" />
+	</File>
+	<File name="output.cpp" open="1" top="1" tabpos="10">
+		<Cursor position="135" topLine="0" />
+	</File>
+	<File name="output.h" open="1" top="0" tabpos="9">
+		<Cursor position="411" topLine="0" />
 	</File>
 </CodeBlocks_layout_file>

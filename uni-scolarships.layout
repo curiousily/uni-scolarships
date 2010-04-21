@@ -13,8 +13,8 @@
 	<File name="application.h" open="1" top="0" tabpos="2">
 		<Cursor position="174" topLine="0" />
 	</File>
-	<File name="input.h" open="1" top="0" tabpos="8">
-		<Cursor position="324" topLine="0" />
+	<File name="input.h" open="1" top="1" tabpos="8">
+		<Cursor position="414" topLine="0" />
 	</File>
 	<File name="list.cpp" open="1" top="0" tabpos="5">
 		<Cursor position="36" topLine="0" />
@@ -25,7 +25,7 @@
 	<File name="main.cpp" open="1" top="0" tabpos="1">
 		<Cursor position="59" topLine="0" />
 	</File>
-	<File name="output.cpp" open="1" top="1" tabpos="10">
+	<File name="output.cpp" open="1" top="0" tabpos="10">
 		<Cursor position="135" topLine="0" />
 	</File>
 	<File name="output.h" open="1" top="0" tabpos="9">

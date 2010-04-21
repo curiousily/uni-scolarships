@@ -50,7 +50,7 @@ NumberType utility::input::ReadNumber(const NumberType & minValue, const NumberT
 
 char * utility::input::ReadString(const int & minLength, const int & maxLength, istream & inputStream)
 {
-    char * result; //= new char[maxLength];
+    char * result;
     int run = 0;
     while (true)
     {

@@ -18,8 +18,6 @@ namespace scolarships
 
             void Add(Student * student);
 
-            Student * Get(const int & index);
-
             int Size();
 
             void Sort( int (*CmpFunc)(Student *, Student *) );

@@ -26,16 +26,7 @@ int scolarships::students::List::Size()
 
 void scolarships::students::List::Add(Student * student)
 {
-    if(studentCount > maxStudents)
-    {
-        return;
-    }
     studentList[studentCount++] = student;
-}
-
-scolarships::students::Student * scolarships::students::List::Get(const int & index)
-{
-    return studentList[index];
 }
 
 void scolarships::students::List::Sort( int (*CmpFunc)(Student *, Student *) )

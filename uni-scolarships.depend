@@ -11,7 +11,7 @@
 
 1271172870 source:/home/vini/Dev/c/workspace/uni-scolarships/input.cpp
 
-1271778830 /home/vini/Dev/c/workspace/uni-scolarships/input.h
+1271873250 /home/vini/Dev/c/workspace/uni-scolarships/input.h
 	<iostream>
 
 1271694263 source:/home/vini/Dev/c/workspace/uni-scolarships/Student.cpp
@@ -24,7 +24,7 @@
 	<stdio.h>
 	"list.h"
 
-1271689530 /home/vini/Dev/c/workspace/uni-scolarships/list.h
+1271873289 /home/vini/Dev/c/workspace/uni-scolarships/list.h
 	"Student.h"
 
 1271176046 /home/vini/Dev/c/workspace/uni-scolarships/rinput.h
